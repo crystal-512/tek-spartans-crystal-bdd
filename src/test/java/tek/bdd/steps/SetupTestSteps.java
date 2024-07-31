@@ -16,7 +16,7 @@ public class SetupTestSteps extends SeleniumUtility {
     public void validateTopLeftLogo() {
         String text = getElementText(By.className("top-nav__logo"));
 
-        Assert.assertEquals("TEKSCHOOL", topLeftCornerText);
+        Assert.assertEquals("TEKSCHOOL", text);
 
         System.out.println(text);
     }
