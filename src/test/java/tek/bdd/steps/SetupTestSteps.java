@@ -10,6 +10,7 @@ public class SetupTestSteps extends SeleniumUtility {
 
     @Given("Open browser and navigate to retail app")
     public void openBrowserAndNavigate() {
+        setupBrowser();
     }
 
     @Then("validate top left corner is TEKSCHOOL")
