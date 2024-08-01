@@ -8,11 +8,6 @@ import tek.bdd.utility.SeleniumUtility;
 
 public class SetupTestSteps extends SeleniumUtility {
 
-    @Given("Open browser and navigate to retail app")
-    public void openBrowserAndNavigate() {
-        setupBrowser();
-    }
-
     @Then("validate top left corner is TEKSCHOOL")
     public void validateTopLeftLogo() {
         String text = getElementText(By.className("top-nav__logo"));
@@ -22,8 +17,11 @@ public class SetupTestSteps extends SeleniumUtility {
         System.out.println(text);
     }
 
-    @Then("Close the browser")
-    public void closeBrowser() {
-        quitBrowser();
+    @Then("Validate Sign in button is enabled")
+    public void validateSignInButtonEnabled () {
+        boolean isSignInButtonEnabled = isElementEnabled(By.id("signinLink"));
+
+        Assert.assertTrue(isSignInButtonEnabled);
     }
+
 }
