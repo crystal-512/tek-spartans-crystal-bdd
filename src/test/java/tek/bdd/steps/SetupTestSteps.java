@@ -2,6 +2,7 @@ package tek.bdd.steps;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import tek.bdd.utility.SeleniumUtility;
@@ -20,8 +21,9 @@ public class SetupTestSteps extends SeleniumUtility {
     @Then("Validate Sign in button is enabled")
     public void validateSignInButtonEnabled () {
         boolean isSignInButtonEnabled = isElementEnabled(By.id("signinLink"));
-
         Assert.assertTrue(isSignInButtonEnabled);
     }
+
+
 
 }

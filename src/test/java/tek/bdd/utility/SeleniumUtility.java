@@ -39,4 +39,10 @@ public class SeleniumUtility extends BaseSetup {
                 .isEnabled();
 
     }
+
+    public boolean isElementDisplayed(By locator) {
+        return waitForVisibility(locator)
+                .isDisplayed();
+
+    }
 }
