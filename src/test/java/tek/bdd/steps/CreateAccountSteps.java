@@ -30,23 +30,27 @@ public class CreateAccountSteps extends SeleniumUtility {
     public void validate_user_is_in_create_new_account_page() {
         String pageSubTitle = getElementText(SignInPage.PAGE_SUBTITLE);
         Assert.assertEquals("Sign in", pageSubTitle);
+
     }
 
-    @When("user enter new account information and click on create account")
-    public void user_enter_new_account_information_and_click_on_create_account() {
-        sendText(CreateNewAccountPage.NAME_INPUT, "Crystal");
-        sendText(CreateNewAccountPage.EMAIL_INPUT, "crystal.a512@gmail.com");
-        sendText(CreateNewAccountPage.PASSWORD_INPUT, "CC234cc!");
-        sendText(CreateNewAccountPage.CONFIRM_PASSWORD_INPUT, "CC234cc!");
+    @When("user enter {string}, {string}, {string}, and {string} and click create account")
+    public void user_enter_name_email_password_and_confirm_password_and_click_create_account
+            (String name, String email, String password, String confirmPassword) {
+        sendText(CreateNewAccountPage.NAME_INPUT, name);
+        sendText(CreateNewAccountPage.EMAIL_INPUT, email);
+        sendText(CreateNewAccountPage.PASSWORD_INPUT, password);
+        sendText(CreateNewAccountPage.CONFIRM_PASSWORD_INPUT, confirmPassword);
         clickOnElement(CreateNewAccountPage.SIGN_UP);
     }
 
-    @When("user enter {string} and {string} and click on login")
-    public void userEnterUsernameAndPassword(String username, String password) {
-        sendText(SignInPage.EMAIL_INPUT, username);
-        sendText(SignInPage.PASSWORD_INPUT, password);
-        clickOnElement(SignInPage.LOGIN_BUTTON);
+
+    @Then("validate new account is created")
+    public void validate_new_account_is_created() {
+        boolean isAccountDisplayed = isElementDisplayed(HomePage.ACCOUNT_LINK);
+        Assert.assertTrue(isAccountDisplayed);
     }
+
+
 
 
 
