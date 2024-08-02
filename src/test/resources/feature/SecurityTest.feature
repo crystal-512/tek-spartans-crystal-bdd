@@ -12,23 +12,27 @@ Feature:Security tests scenario
     Then validate user is in sign in page
     When user enter "invalid@gmail.com" and "CC234cc!" and click on login
     #When user enter username and password and click login
-    Then user should see error "wrong username or password"
+
 
   Scenario: Validate sign in invalid credentials
     When user click on sign in link
     Then validate user is in sign in page
     When user enter "crystal.a512@gmail.com" and "WrongPassword223" and click on login
     #When user enter username and password and click login
+
+
+  Scenario Outline:
+    When user click on sign in link
+    Then validate user is in sign in page
+    When user enter "<username>" and "<password>" and click on login
     Then user should see error "wrong username or password"
 
-    Scenario Outline:
-      When user enter "crystal.a512@gmail.com" and "WrongPassword223" and click on login
-      Then user should see error "wrong username or password"
+    Examples:
 
-      Examples:
-      | username               | password
-      | invalid@gmail.com      | CC234cc!
-      | crystal.a512@gmail.com | WrongPassword223
+      | username               | password         |
+      | invalid@gmail.com      | CC234cc!         |
+      | crystal.a512@gmail.com | WrongPassword223 |
+      | crystal.a512@gmail.com | WrongPassword223 |
 
 
 
