@@ -12,6 +12,7 @@ import tek.bdd.pages.SignInPage;
 import tek.bdd.utility.RandomGenerator;
 import tek.bdd.utility.SeleniumUtility;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -141,6 +142,43 @@ public class CreateAccountSteps extends SeleniumUtility {
                     expected,
                     actual);
         }
+
+    }
+    @Then("validate field error messages using map")
+    public void validate_field_error_messages_using_map(DataTable dataTable) {
+        Map<String, String> expectedData = dataTable.asMap();
+
+        List<WebElement> errorElements = getElements(SignUpPage.ERROR_MESSAGE);
+        Assert.assertEquals("Number of Error message should be same as Expected",
+                expectedData.size(),
+                errorElements.size());
+
+        Map<String, String> actualErrors = new HashMap<>();
+        for(WebElement element : errorElements) {
+            String text = element.getText();
+            String key = text.split(" ")[0];
+            actualErrors.put(key, text);
+        }
+
+        for (String key : expectedData.keySet()) {
+            Assert.assertEquals("Error Message should match",
+                    expectedData.get(key),
+                    actualErrors.get(key));
+        }
+
+
+//        Assert.assertEquals("Error Message should match",
+//                expectedData.get("name"),
+//                errorElements.get(0).getText());
+//        Assert.assertEquals("Error Message should match",
+//                expectedData.get("email"),
+//                errorElements.get(1).getText());
+//        Assert.assertEquals("Error Message should match",
+//                expectedData.get("password"),
+//                errorElements.get(2).getText());
+//        Assert.assertEquals("Error Message should match",
+//                expectedData.get("confirm"),
+//                errorElements.get(3).getText());
 
     }
 

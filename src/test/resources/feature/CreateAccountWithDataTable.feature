@@ -11,7 +11,7 @@ Feature: Create new account functionality
   @UsingMap
   Scenario: Using a Map as Data Table
     When user enter new account info
-      | name     | Mohammad     |
+      | name     | Crystal     |
       | email    | random       |
       | password | Password@123 |
     When user click on "Sign Up" button
