@@ -8,12 +8,13 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "classpath:feature", // Directory for Feature file
         glue = "tek.bdd.steps",//Package for all the steps
-        dryRun = false,
-        tags = "@Smoke",
+        dryRun = true,
+        tags = "@UsingList",
         plugin = {
                 "html:target/cucumber_report/index.html"
         }
 )
 public class TestRunner {
-
 }
+
+//Running multiple tags => tags = "@Smoke or @Regression"
