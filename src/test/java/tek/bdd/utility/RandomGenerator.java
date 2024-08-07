@@ -4,13 +4,16 @@ import java.util.Random;
 
 public class RandomGenerator {
 
-    public static String generateRandomString() {
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        StringBuilder stringBuilder = new StringBuilder(10);
+    public static String generateRandomEmail() {
+        String characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random random = new Random();
-        for (int i = 0; i < 10; i++) {
-            stringBuilder.append(characters.charAt(random.nextInt(characters.length())));}
-        return stringBuilder.toString();
+        StringBuilder randomString = new StringBuilder(10);
 
+        for (int i = 0; i < 10; i++) {
+            int index = random.nextInt(characters.length() );
+            randomString.append(characters.charAt(index));
+        }
+        return randomString.toString() + "@gmail.com";
     }
+
 }

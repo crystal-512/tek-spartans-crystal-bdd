@@ -24,7 +24,7 @@ public class CreateAccountSteps extends SeleniumUtility {
     public void user_enter_name_email_password_and_confirm_password_and_click_create_account
             (String name, String email, String password) {
         emailToUse = email.equalsIgnoreCase("random")
-                ? RandomGenerator.generateRandomString() : email;
+                ? RandomGenerator.generateRandomEmail() : email;
      //   String emailToUse;
      //  // if (email.equalsIgnoreCase("random")) {
      //      emailToUse = RandomGenerator.generateRandomString();
@@ -63,7 +63,7 @@ public class CreateAccountSteps extends SeleniumUtility {
         String password = data.get("password");
 
         emailToUse = email.equalsIgnoreCase("random")
-                ? RandomGenerator.generateRandomString() : email;
+                ? RandomGenerator.generateRandomEmail() : email;
 
         sendText(SignUpPage.NAME_INPUT, name);
         sendText(SignUpPage.EMAIL_INPUT, emailToUse);
@@ -80,7 +80,7 @@ public class CreateAccountSteps extends SeleniumUtility {
         String password = data.get(2);
 
         emailToUse = email.equalsIgnoreCase("random")
-                ? RandomGenerator.generateRandomString() : email;
+                ? RandomGenerator.generateRandomEmail() : email;
 
         sendText(SignUpPage.NAME_INPUT, name);
         sendText(SignUpPage.EMAIL_INPUT, emailToUse);
@@ -97,7 +97,7 @@ public class CreateAccountSteps extends SeleniumUtility {
         String password = data.get(0).get(2);
 
         emailToUse = email.equalsIgnoreCase("random")
-                ? RandomGenerator.generateRandomString() : email;
+                ? RandomGenerator.generateRandomEmail() : email;
 
         sendText(SignUpPage.NAME_INPUT, name);
         sendText(SignUpPage.EMAIL_INPUT, emailToUse);
@@ -115,7 +115,7 @@ public class CreateAccountSteps extends SeleniumUtility {
         String password = data.get(0).get("password");
 
         emailToUse = email.equalsIgnoreCase("random")
-                ? RandomGenerator.generateRandomString() : email;
+                ? RandomGenerator.generateRandomEmail() : email;
 
         sendText(SignUpPage.NAME_INPUT, name);
         sendText(SignUpPage.EMAIL_INPUT, emailToUse);
