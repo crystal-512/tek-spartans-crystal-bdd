@@ -4,6 +4,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.WebElement;
 import tek.bdd.pages.AccountPage;
 import tek.bdd.pages.SignUpPage;
 import tek.bdd.pages.HomePage;
@@ -84,6 +85,63 @@ public class CreateAccountSteps extends SeleniumUtility {
         sendText(SignUpPage.EMAIL_INPUT, emailToUse);
         sendText(SignUpPage.PASSWORD_INPUT, password);
         sendText(SignUpPage.CONFIRM_PASSWORD, password);
+    }
+
+    @When("user enter new account as list of list")
+    public void user_enter_new_account_as_list_of_list(DataTable dataTable) {
+        //convert data table to List of List
+        List<List<String>> data = dataTable.asLists();
+        String name = data.get(0).get(0);
+        String email = data.get(0).get(1);
+        String password = data.get(0).get(2);
+
+        emailToUse = email.equalsIgnoreCase("random")
+                ? RandomGenerator.generateRandomString() : email;
+
+        sendText(SignUpPage.NAME_INPUT, name);
+        sendText(SignUpPage.EMAIL_INPUT, emailToUse);
+        sendText(SignUpPage.PASSWORD_INPUT, password);
+        sendText(SignUpPage.CONFIRM_PASSWORD, password);
+    }
+
+    @When("user enter new account as list of maps")
+    public void user_enter_new_account_as_list_of_maps(DataTable dataTable) {
+        //Converting data table to list of Maps
+        List<Map<String, String>> data = dataTable.asMaps();
+
+        String email = data.get(0).get("email");
+        String name = data.get(0).get("name");
+        String password = data.get(0).get("password");
+
+        emailToUse = email.equalsIgnoreCase("random")
+                ? RandomGenerator.generateRandomString() : email;
+
+        sendText(SignUpPage.NAME_INPUT, name);
+        sendText(SignUpPage.EMAIL_INPUT, emailToUse);
+        sendText(SignUpPage.PASSWORD_INPUT, password);
+        sendText(SignUpPage.CONFIRM_PASSWORD, password);
+    }
+
+    @Then("validate field error messages")
+    public void validate_field_error_messages(DataTable dataTable) {
+        // Converting data table to list
+        List<String> expectedData = dataTable.asList();
+
+        //GetActual Data
+        List<WebElement> errorElements = getElements(SignUpPage.ERROR_MESSAGE);
+        Assert.assertEquals("Number of Error message should be same as Expected",
+                expectedData.size(),
+                errorElements.size());
+
+        for (int index = 0; index < expectedData.size(); index++) {
+            String expected = expectedData.get(index);
+            String actual = errorElements.get(index).getText();
+
+            Assert.assertEquals("Error Message should match",
+                    expected,
+                    actual);
+        }
+
     }
 
 

@@ -21,9 +21,37 @@ Feature: Create new account functionality
   @UsingList
   Scenario: Using List as Data Table
     When user enter new account info using list Data
-      | Crystal   |
-      | random       |
-      | Password@123 |
+      | Crystal  |
+      | random   |
+      | CC234cc! |
     When user click on "Sign Up" button
     Then validate user is in account page
     Then validate email address in account page match
+
+  @UsingListOfList
+  Scenario: Using List of List as Data table
+    When user enter new account as list of list
+      | John | random | John@123 |
+    When user click on "Sign Up" button
+    Then validate user is in account page
+    Then validate email address in account page match
+
+
+  @UsingListOfMaps
+  Scenario: Using List of maps as Data table
+    When user enter new account as list of maps
+      | name     | email  | password     |
+      | John     | random | John@123     |
+      | Mohammad | random | Password@123 |
+    When user click on "Sign Up" button
+    Then validate user is in account page
+    Then validate email address in account page match
+
+  @ValidateFieldError
+  Scenario: Validate error on all field when no data entered
+    When user click on "Sign Up" button
+    Then validate field error messages
+      | Name is a required field             |
+      | Email is a required field            |
+      | Password is a required field         |
+      | Confirm Password is a required field |

@@ -51,5 +51,9 @@ public class SeleniumUtility extends BaseSetup {
         return screenShot.getScreenshotAs(OutputType.BYTES);
     }
 
+    public List<WebElement> getElements(By locator) {
+        return getWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+    }
+
 
 }
