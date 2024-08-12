@@ -21,9 +21,9 @@ Feature: Create new account functionality
   @UsingList
   Scenario: Using List as Data Table
     When user enter new account info using list Data
-      | Crystal  |
-      | random   |
-      | CC234cc! |
+      | Crystal     |
+      | random       |
+      | Password@123 |
     When user click on "Sign Up" button
     Then validate user is in account page
     Then validate email address in account page match
@@ -55,3 +55,12 @@ Feature: Create new account functionality
       | Email is a required field            |
       | Password is a required field         |
       | Confirm Password is a required field |
+
+  @ValidateFieldErrorUsingMap
+  Scenario: Validate error on All fields when no  data entered using map
+    When user click on "Sign Up" button
+    Then validate field error messages using map
+      | Name     | Name is a required field             |
+      | Email    | Email is a required field            |
+      | Password | Password is a required field         |
+      | Confirm  | Confirm Password is a required field |
